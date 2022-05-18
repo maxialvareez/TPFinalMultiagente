@@ -7,13 +7,14 @@ public class EsperarPropuestaInicial extends CyclicBehaviour {
 
 	@Override
 	public void action() {
-		
-		// Solo recibimos mensajes PROPOSE iniciales
+
+		System.out.println("Entro");
+		 //Solo recibimos mensajes PROPOSE iniciales
 		ACLMessage prop_ini = myAgent.receive(MessageTemplate.and(
-						MessageTemplate.MatchPerformative(ACLMessage.PROPOSE), 
-						MessageTemplate.MatchInReplyTo("")));      //chequear si va con comillas vacías o null
-		
+						MessageTemplate.MatchPerformative(ACLMessage.PROPOSE),MessageTemplate.MatchInReplyTo("")));      //chequear si va con comillas vacías o null
+
 		if (prop_ini != null) {
+			System.out.println("Crea FSM");
 			myAgent.addBehaviour(new FSMProtocolo(prop_ini));
 		}
 		else

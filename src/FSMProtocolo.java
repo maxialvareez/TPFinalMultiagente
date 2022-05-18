@@ -9,12 +9,12 @@ public class FSMProtocolo extends FSMBehaviour{
 	public static final String PROPOSE_INITIAL = "propose-initial";
 	private static final String ENVIAR_PROPUESTA = "enviar-propuesta";
 	private static final String EVALUAR_PROPUESTA = "evaluar-propuesta";
-	private static final String ESPERAR_RESPUESTA = null;
-	private static final String ENVIAR_ZEUTHEN = null;
-	private static final String RECIBIR_ZEUTHEN = null;
-	private static final String ESPERAR_PROPUESTA = null;
-	private static final String ACUERDO = null;
-	private static final String CONFLICTO = null;
+	private static final String ESPERAR_RESPUESTA = "esperar-respuesta";
+	private static final String ENVIAR_ZEUTHEN = "enviar-zeuthen";
+	private static final String RECIBIR_ZEUTHEN ="recibir-zeuthen";
+	private static final String ESPERAR_PROPUESTA = "esperar-respuesta";
+	private static final String ACUERDO = "acuerdo";
+	private static final String CONFLICTO = "conflicto";
 
 	// INICIATOR
 	public FSMProtocolo(AID aid) {
@@ -70,9 +70,9 @@ public class FSMProtocolo extends FSMBehaviour{
 			this.registerFirstState(evaluar_propuesta, EVALUAR_PROPUESTA);
 			this.registerState(enviar_propuesta, ENVIAR_PROPUESTA);
 		}
-		
+
 		this.registerState(esperar_respuesta, ESPERAR_RESPUESTA);
-		
+
 		this.registerState(enviar_zeuthen, ENVIAR_ZEUTHEN);
 		
 		this.registerState(recibir_zeuthen, RECIBIR_ZEUTHEN);
@@ -101,8 +101,8 @@ public class FSMProtocolo extends FSMBehaviour{
 		
 		this.registerTransition(EVALUAR_PROPUESTA, ENVIAR_ZEUTHEN, 0); // Reject
 		this.registerTransition(EVALUAR_PROPUESTA, ACUERDO, 1); // Accept
-		
-			
+
+
 	}
 
 }

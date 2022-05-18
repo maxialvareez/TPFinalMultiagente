@@ -13,9 +13,10 @@ import java.util.List;
 
 		@Override
 		public void action() {
+			AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
 			ACLMessage req = new ACLMessage(ACLMessage.PROPOSE);
 			req.setContent("Te gustaría comer "+ this.comidas.get(posicion));
-			req.addReceiver(new AID("AgenteResponder", AID.ISLOCALNAME));
+			req.addReceiver(nombreOponente);
 
 			this.getDataStore().put("mensaje request", req);
 			System.out.println("Te gustaría comer "+ this.comidas.get(posicion)+ "?");
