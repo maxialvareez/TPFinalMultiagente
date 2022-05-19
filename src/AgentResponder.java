@@ -1,13 +1,14 @@
-import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 
 
+public class AgentResponder extends AgentNegociador{
 
-public class Negociador extends Agent {
     protected void setup() {
+        super.setup();
+
         // Crea una descripción del agente para el DF
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
@@ -36,6 +37,5 @@ public class Negociador extends Agent {
         }
 
     }
-
 
 }

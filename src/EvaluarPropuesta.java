@@ -8,7 +8,7 @@ import jade.lang.acl.ACLMessage;
 		public void action() {
 			//System.out.println("En Estado Intermedio");
 
-			ACLMessage mensaje = (ACLMessage) this.getDataStore().get("mensaje request");
+			ACLMessage mensaje = (ACLMessage) this.getDataStore().get(FSMProtocolo.PROPOSE_INITIAL);
 
 			if (mensaje != null) {
 				recibido = true;

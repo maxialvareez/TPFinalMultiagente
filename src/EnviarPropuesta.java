@@ -1,7 +1,6 @@
 import jade.core.behaviours.Behaviour;
 
 import jade.core.AID;
-import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
 import java.util.Arrays;
 import java.util.List;
@@ -15,8 +14,12 @@ import java.util.List;
 		public void action() {
 			AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
 			ACLMessage req = new ACLMessage(ACLMessage.PROPOSE);
+			req.setConversationId("CONV-" + myAgent.getName());
 			req.setInReplyTo("");
-			req.setContent("Te gustaría comer "+ this.comidas.get(posicion));
+			((AgentNegociador)myAgent).getPuntajes();
+
+
+			//req.setContent();
 			req.addReceiver(nombreOponente);
 
 			this.getDataStore().put("mensaje request", req);

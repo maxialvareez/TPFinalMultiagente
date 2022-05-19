@@ -6,6 +6,7 @@ import jade.lang.acl.MessageTemplate;
 
 import java.util.Iterator;
 
+
 public class EsperarRespuesta extends Behaviour {
 	private boolean termino = false;
 	private int event = -1;
@@ -16,7 +17,10 @@ public class EsperarRespuesta extends Behaviour {
 
 		ACLMessage msg = myAgent.receive();
 
+
 		if (msg != null) {
+			getDataStore().put(FSMProtocolo.ULTIMOMSG,msg);
+
 			if (msg.getPerformative() == ACLMessage.REJECT_PROPOSAL){
 				event = 0;
 			}

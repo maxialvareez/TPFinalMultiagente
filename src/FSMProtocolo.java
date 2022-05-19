@@ -3,6 +3,8 @@ import jade.core.behaviours.DataStore;
 import jade.core.behaviours.FSMBehaviour;
 import jade.lang.acl.ACLMessage;
 
+import java.util.List;
+
 public class FSMProtocolo extends FSMBehaviour{
 
 	public static final String AID_OPONENTE = "aid-oponente";
@@ -15,7 +17,8 @@ public class FSMProtocolo extends FSMBehaviour{
 	private static final String ESPERAR_PROPUESTA = "esperar-respuesta";
 	private static final String ACUERDO = "acuerdo";
 	private static final String CONFLICTO = "conflicto";
-
+	public static final String ULTIMOMSG = "ultimo-msg";
+	public static final String CONVID = "conversation-id";
 	// INICIATOR
 	public FSMProtocolo(AID aid) {
 		DataStore ds = new DataStore();

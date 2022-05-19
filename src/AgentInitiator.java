@@ -6,8 +6,14 @@ import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.proto.SubscriptionInitiator;
 
-public class Iniciator extends Agent {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class AgentInitiator extends AgentNegociador {
+
     protected void setup() {
+        super.setup();
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
         sd.setType("negociacion");
