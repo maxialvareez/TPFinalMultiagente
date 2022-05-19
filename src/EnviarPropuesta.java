@@ -15,6 +15,7 @@ import java.util.List;
 		public void action() {
 			AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
 			ACLMessage req = new ACLMessage(ACLMessage.PROPOSE);
+			req.setInReplyTo("");
 			req.setContent("Te gustaría comer "+ this.comidas.get(posicion));
 			req.addReceiver(nombreOponente);
 
