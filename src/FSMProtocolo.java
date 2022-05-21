@@ -17,7 +17,7 @@ public class FSMProtocolo extends FSMBehaviour{
 	private static final String ESPERAR_PROPUESTA = "esperar-respuesta";
 	private static final String ACUERDO = "acuerdo";
 	private static final String CONFLICTO = "conflicto";
-	public static final String ULTIMOMSG = "ultimo-msg";
+	public static final String ULTIMOMSJ = "ultimo-msg";
 	public static final String CONVID = "conversation-id";
 	// INICIATOR
 	public FSMProtocolo(AID aid) {

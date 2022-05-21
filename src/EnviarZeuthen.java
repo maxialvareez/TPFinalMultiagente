@@ -5,16 +5,31 @@ public class EnviarZeuthen extends Behaviour {
 
 	@Override
 	public void action() {
-		String comida_propuesta = "";   //TODO Extraer del DS
+		ACLMessage ultimoRecibido = (ACLMessage) getDataStore().get(FSMProtocolo.ULTIMOMSJ);
 
-		double uPropActual = ((AgentNegociador)myAgent).getPuntajePropuestaActual();
-		double uPropRecibida = ((AgentNegociador)myAgent).getPuntaje(comida_propuesta);
+		String comida_propuesta = ultimoRecibido.getContent();
 
 
-		ACLMessage ult_msg = (ACLMessage)getDataStore().get(FSMProtocolo.PROPOSE_INITIAL);
+		double uPropActual = ((AgentNegociador)myAgent).getPuntajePropuestaActual();  //Utilidad de propuesta actual
+		double uPropRecibida = ((AgentNegociador)myAgent).getPuntaje(comida_propuesta); //Utilidad de propuesta recibida
 
+
+		ACLMessage ult_msg = (ACLMessage)getDataStore().get(FSMProtocolo.ULTIMOMSJ);
+
+		double miZeuthen = ((AgentNegociador)myAgent).calcularZeuthen();
+
+		//TODO hay que setear mas cosas del mensaje
+		ACLMessage mensaje=  (ACLMessage) this.getDataStore().get(FSMProtocolo.ULTIMOMSJ);
+		mensaje.createReply();
+		mensaje.setPerformative(ACLMessage.INFORM);
+		//Todo No se puede enviar un double, con la ontologia creo que se permitiria, pero fijarse como hacerlo ahora.
+		mensaje.setContent(Double.toString(miZeuthen));
+
+		myAgent.send(mensaje);
 
 	}
+
+
 
 	@Override
 	public boolean done() {

@@ -27,6 +27,7 @@ public class Puntaje implements Comparable<Puntaje>{
         return this;
     }
 
+
     @Override
     public int compareTo(Puntaje p) {
         return Double.compare(this.puntaje,p.getPuntaje());

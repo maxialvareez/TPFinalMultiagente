@@ -81,4 +81,32 @@ public class AgentNegociador extends Agent {
         return 0;
     }
 
+    public double getPeorPuntaje(){
+        if (puntajes.size() > 0)
+            return (puntajes.get(puntajes.size()-1).getPuntaje());
+
+        return -1;
+    }
+
+
+    public void cederComida(){
+        this.puntajes.remove(0);
+    }
+
+    public boolean existeComida(){
+        if (puntajes.isEmpty())
+            return false;
+
+        return true;
+    }
+
+    public double calcularZeuthen(){
+        if (this.getPuntajePropuestaActual() == 0)
+            return 1;
+        else{
+            return ((this.getPuntajePropuestaActual() - this.getPeorPuntaje()) / this.getPuntajePropuestaActual());
+        }
+    }
+
+
 }

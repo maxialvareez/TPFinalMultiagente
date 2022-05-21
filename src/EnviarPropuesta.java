@@ -6,40 +6,48 @@ import java.util.Arrays;
 import java.util.List;
 
 	public class EnviarPropuesta extends Behaviour {
-		private boolean termino = false;
-		List<String> comidas = Arrays.asList("Milanesas","Papas","Asado","Pasta");
-		int posicion = 0;
+
+		int event = -1;
 
 		@Override
 		public void action() {
-			AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
-			ACLMessage req = new ACLMessage(ACLMessage.PROPOSE);
-			req.setConversationId("CONV-" + myAgent.getName());
-			req.setInReplyTo("");
-			((AgentNegociador)myAgent).getPuntajes();
 
+			if (((AgentNegociador)myAgent).existeComida()) {
 
-			//req.setContent();
-			req.addReceiver(nombreOponente);
+				AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
 
-			this.getDataStore().put("mensaje request", req);
-			System.out.println("Te gustaría comer "+ this.comidas.get(posicion)+ "?");
-			if (posicion < this.comidas.size() -1)
-				posicion += 1;
-			else
-				posicion = 0;
-			this.myAgent.send(req);
-			this.termino = true;
+				//Armado del mensaje a enviar
+				ACLMessage msj_propose = new ACLMessage(ACLMessage.PROPOSE);
+				msj_propose.setReplyWith(myAgent.getName() + "-" + Math.random());
+				msj_propose.setConversationId(myAgent.getName() + nombreOponente + "-" + Math.random());
+				msj_propose.setInReplyTo("");
+				msj_propose.setContent(((AgentNegociador) myAgent).getPropuestaActual());
+				msj_propose.addReceiver(nombreOponente);
 
+				//Datos para el filtrado de mensajes del proximo estado (va a filtrar por ConversationID y ReplyTo(el replyTo que espera es el replyWith de este mensaje guardado)
+				this.getDataStore().put(FSMProtocolo.PROPOSE_INITIAL, msj_propose);
+
+				this.event = 0;
+				this.myAgent.send(msj_propose);
+			}
+
+			else {
+				this.event = 1;
+			}
 		}
 
 		@Override
 		public boolean done() {
-			return  termino;
+			return true;
+		}
+
+		@Override
+		public int onEnd() {
+			return event;
 		}
 
 		public void reset(){
-			this.termino= false;
+			this.event = -1;
 		}
 
 	}
