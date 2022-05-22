@@ -19,16 +19,8 @@ public class AgentNegociador extends Agent {
     protected void setup() {
 
         this.puntajes = new ArrayList<>();
-        puntajes.add(new Puntaje("Milanesas", Math.random()));
-        puntajes.add(new Puntaje("Papas", Math.random()));
-        puntajes.add(new Puntaje("Pasta", Math.random()));
-        puntajes.add(new Puntaje("Asado", Math.random()));
-        puntajes.add(new Puntaje("Arroz", Math.random()));
-        Collections.sort(puntajes);
-
 
         // Crea una descripción del agente para el DF
-
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
 
@@ -59,6 +51,14 @@ public class AgentNegociador extends Agent {
 
     public List<Puntaje> getPuntajes() {
         return puntajes;
+    }
+
+    public void agregarPuntaje(Puntaje p){
+        puntajes.add(p);
+    }
+
+    public void ordenarPuntajes(){
+        Collections.sort(this.puntajes);
     }
 
     public int getpActual() {

@@ -4,14 +4,14 @@ public class Conflicto extends Behaviour {
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
+		System.out.println("Conflicto");
 
 	}
 
 	@Override
 	public boolean done() {
-		// TODO Auto-generated method stub
-		return false;
+
+		return true;
 	}
 
 }

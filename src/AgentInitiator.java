@@ -14,6 +14,15 @@ public class AgentInitiator extends AgentNegociador {
 
     protected void setup() {
         super.setup();
+
+        agregarPuntaje(new Puntaje("Milanesas", 5));
+        agregarPuntaje(new Puntaje("Papas",4.5));
+        agregarPuntaje(new Puntaje("Pasta", 4));
+        agregarPuntaje(new Puntaje("Asado", 2));
+        agregarPuntaje(new Puntaje("Arroz", 1));
+        ordenarPuntajes();
+
+
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
         sd.setType("negociacion");
