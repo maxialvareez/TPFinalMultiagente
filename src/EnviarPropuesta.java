@@ -12,25 +12,38 @@ import java.util.List;
 		@Override
 		public void action() {
 
-			if (((AgentNegociador)myAgent).existeComida()) {
-				AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
+			ACLMessage mensaje = null;
 
-				//Armado del mensaje a enviar
-				ACLMessage msj_propose = new ACLMessage(ACLMessage.PROPOSE);
-				msj_propose.setReplyWith(myAgent.getName() + "-" + Math.random());
-				msj_propose.setConversationId(myAgent.getName() + nombreOponente + "-" + Math.random());
-				msj_propose.setInReplyTo("");
-				msj_propose.setContent(((AgentNegociador) myAgent).getPropuestaActual());
-				msj_propose.addReceiver(nombreOponente);
+			if (((AgentNegociador) myAgent).existeComida()) {
+				if (this.getDataStore().get(FSMProtocolo.ULTIMOMSJ) == null) {
+					AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
 
-				//Datos para el filtrado de mensajes del proximo estado (va a filtrar por ConversationID y ReplyTo(el replyTo que espera es el replyWith de este mensaje guardado)
-				this.getDataStore().put(FSMProtocolo.MSJ_ENVIADO, msj_propose);
+					//Armado del mensaje a enviar
+					ACLMessage msj_propose = new ACLMessage(ACLMessage.PROPOSE);
+					msj_propose.setReplyWith(myAgent.getName() + "-" + Math.random());
+					msj_propose.setConversationId(myAgent.getName() + nombreOponente + "-" + Math.random());
+					msj_propose.setInReplyTo("");
+					msj_propose.setContent(((AgentNegociador) myAgent).getPropuestaActual());
+					msj_propose.addReceiver(nombreOponente);
 
-				this.event = 0;
-				this.myAgent.send(msj_propose);
-			}
+					//Datos para el filtrado de mensajes del proximo estado (va a filtrar por ConversationID y ReplyTo(el replyTo que espera es el replyWith de este mensaje guardado)
+					this.getDataStore().put(FSMProtocolo.MSJ_ENVIADO, msj_propose);
 
-			else {
+					this.event = 0;
+					this.myAgent.send(msj_propose);
+				} else {
+
+					mensaje = (ACLMessage) getDataStore().get(FSMProtocolo.ULTIMOMSJ);
+					ACLMessage respuesta = mensaje.createReply();
+					respuesta.setContent(((AgentNegociador) myAgent).getPropuestaActual());
+					respuesta.setPerformative(ACLMessage.PROPOSE);
+
+					this.getDataStore().put(FSMProtocolo.MSJ_ENVIADO, respuesta);
+
+					this.event = 0;
+					this.myAgent.send(respuesta);
+				}
+			} else {
 				this.event = 1;
 			}
 		}

@@ -21,7 +21,7 @@ import jade.lang.acl.ACLMessage;
 				event = 1;
 			}
 			else{
-				respuesta.setContent("Esa comida no me gusta");
+				respuesta.setContent(((AgentNegociador)myAgent).getPropuestaActual());
 				respuesta.setPerformative(ACLMessage.REJECT_PROPOSAL);
 				event = 0;
 			}

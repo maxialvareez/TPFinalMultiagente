@@ -14,7 +14,7 @@ public class FSMProtocolo extends FSMBehaviour{
 	private static final String ESPERAR_RESPUESTA = "esperar-respuesta";
 	private static final String ENVIAR_ZEUTHEN = "enviar-zeuthen";
 	private static final String RECIBIR_ZEUTHEN ="recibir-zeuthen";
-	private static final String ESPERAR_PROPUESTA = "esperar-respuesta";
+	private static final String ESPERAR_PROPUESTA = "esperar-propuesta";
 	private static final String ACUERDO = "acuerdo";
 	private static final String CONFLICTO = "conflicto";
 	public static final String ULTIMOMSJ = "ultimo-msg";
@@ -87,7 +87,7 @@ public class FSMProtocolo extends FSMBehaviour{
 		this.registerLastState(conflicto, CONFLICTO);
 		
 		// Definir transiciones
-		
+
 		this.registerTransition(ENVIAR_PROPUESTA, ESPERAR_RESPUESTA, 0);
 		this.registerTransition(ENVIAR_PROPUESTA, CONFLICTO, 1); // No tengo más propuestas y debo conceder
 		

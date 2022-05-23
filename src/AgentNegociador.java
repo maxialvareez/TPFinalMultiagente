@@ -76,11 +76,11 @@ public class AgentNegociador extends Agent {
         return true;
     }
 
-    public double calcularZeuthen(){
+    public double calcularZeuthen(double uPropuestaRecibida){
         if (this.getPuntajePropuestaActual() == 0)
             return 1;
         else{
-            return ((this.getPuntajePropuestaActual() - this.getPeorPuntaje()) / this.getPuntajePropuestaActual());
+            return ((this.getPuntajePropuestaActual() - uPropuestaRecibida) / this.getPuntajePropuestaActual());
         }
     }
 

@@ -14,16 +14,9 @@ public class EnviarZeuthen extends Behaviour {
 		double uPropActual = ((AgentNegociador)myAgent).getPuntajePropuestaActual();  //Utilidad de propuesta actual
 		double uPropRecibida = ((AgentNegociador)myAgent).getPuntaje(comida_propuesta); //Utilidad de propuesta recibida
 
-		System.out.println(uPropActual);
-		System.out.println(uPropRecibida);
-		System.out.println("Comida prop : " + comida_propuesta);
-
 		ACLMessage ult_msg = (ACLMessage)getDataStore().get(FSMProtocolo.ULTIMOMSJ);
 
-		double miZeuthen = ((AgentNegociador)myAgent).calcularZeuthen();
-
-		System.out.println(miZeuthen);
-		//TODO hay que setear mas cosas del mensaje
+		double miZeuthen = ((AgentNegociador)myAgent).calcularZeuthen(uPropRecibida);
 
 		ACLMessage mensaje=  (ACLMessage) this.getDataStore().get(FSMProtocolo.ULTIMOMSJ);
 

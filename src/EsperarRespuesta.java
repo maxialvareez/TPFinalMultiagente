@@ -22,7 +22,6 @@ public class EsperarRespuesta extends Behaviour {
 
 		System.out.println("En estado esperar respuesta");
 		if (msj_actual != null) {
-			System.out.println("ENTROOOO");
 			getDataStore().put(FSMProtocolo.ULTIMOMSJ,msj_actual);
 
 			if (msj_actual.getPerformative() == ACLMessage.REJECT_PROPOSAL){

@@ -12,21 +12,28 @@ public class RecibirZeuthen extends Behaviour {
 
 		//TODO Filtrado mensaje
 		ACLMessage recibido = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		ACLMessage comida = (ACLMessage) getDataStore().get(FSMProtocolo.ULTIMOMSJ);
+		String comida_propuesta = comida.getContent();
 
-		System.out.println("Entra al recibir zeuthen");
+		double uPropRecibida = ((AgentNegociador)myAgent).getPuntaje(comida_propuesta);
+
+
 		if (recibido != null) {
-			System.out.println("Recibe el inform del zeuthen");
 			termino = true;
-			double miZeuthen = ((AgentNegociador) myAgent).calcularZeuthen();
+			double miZeuthen = ((AgentNegociador) myAgent).calcularZeuthen(uPropRecibida);
 			double otroZeuthen = Double.parseDouble(recibido.getContent());
 
+			System.out.println(myAgent.getName()+ ", Prop Recibida: " + comida_propuesta + "---------> Puntaje: " + uPropRecibida+ ", MiZeuthen: "+ miZeuthen+ ", OtroZeuthen" + otroZeuthen);
+
 			//TODO que hacer para el caso de que sean iguales? Porque asi ambos concederian, o ambos no concederian
-			if (miZeuthen <= otroZeuthen) {
+			if (miZeuthen < otroZeuthen) {
 				((AgentNegociador)myAgent).cederComida();
 				event = 1;
+				System.out.println("Va a proponer " + myAgent.getName());
 			}
 			else {
 				event = 0;
+				System.out.println("Espera nueva propuesta " + myAgent.getName());
 			}
 		}
 		else block();
