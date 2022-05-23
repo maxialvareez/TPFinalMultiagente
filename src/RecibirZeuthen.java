@@ -13,7 +13,9 @@ public class RecibirZeuthen extends Behaviour {
 		//TODO Filtrado mensaje
 		ACLMessage recibido = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
 
+		System.out.println("Entra al recibir zeuthen");
 		if (recibido != null) {
+			System.out.println("Recibe el inform del zeuthen");
 			termino = true;
 			double miZeuthen = ((AgentNegociador) myAgent).calcularZeuthen();
 			double otroZeuthen = Double.parseDouble(recibido.getContent());
@@ -28,7 +30,6 @@ public class RecibirZeuthen extends Behaviour {
 			}
 		}
 		else block();
-
 	}
 
 	@Override

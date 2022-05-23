@@ -5,9 +5,9 @@ import jade.lang.acl.ACLMessage;
 		private int event = -1;
 		@Override
 		public void action() {
-			//System.out.println("En Estado Intermedio");
+			System.out.println("En Estado Intermedio");
 
-			ACLMessage mensaje = (ACLMessage) this.getDataStore().get(FSMProtocolo.PROPOSE_INITIAL);
+			ACLMessage mensaje = (ACLMessage) this.getDataStore().get(FSMProtocolo.ULTIMOMSJ);
 			ACLMessage respuesta = mensaje.createReply();
 
 			//Comparacion entre la utilizad de la propuesta propia y la recibida. Si U(PropPropia) <= U(PropuestaRecibida) entonces acepta
@@ -25,6 +25,7 @@ import jade.lang.acl.ACLMessage;
 				respuesta.setPerformative(ACLMessage.REJECT_PROPOSAL);
 				event = 0;
 			}
+			getDataStore().put(FSMProtocolo.MSJ_ENVIADO, respuesta);
 			this.myAgent.send(respuesta);
 		}
 

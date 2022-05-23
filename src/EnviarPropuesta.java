@@ -13,7 +13,6 @@ import java.util.List;
 		public void action() {
 
 			if (((AgentNegociador)myAgent).existeComida()) {
-
 				AID nombreOponente = (AID) this.getDataStore().get(FSMProtocolo.AID_OPONENTE);
 
 				//Armado del mensaje a enviar
@@ -25,7 +24,7 @@ import java.util.List;
 				msj_propose.addReceiver(nombreOponente);
 
 				//Datos para el filtrado de mensajes del proximo estado (va a filtrar por ConversationID y ReplyTo(el replyTo que espera es el replyWith de este mensaje guardado)
-				this.getDataStore().put(FSMProtocolo.PROPOSE_INITIAL, msj_propose);
+				this.getDataStore().put(FSMProtocolo.MSJ_ENVIADO, msj_propose);
 
 				this.event = 0;
 				this.myAgent.send(msj_propose);
@@ -43,9 +42,10 @@ import java.util.List;
 
 		@Override
 		public int onEnd() {
-			return event;
+			return this.event;
 		}
 
+		@Override
 		public void reset(){
 			this.event = -1;
 		}

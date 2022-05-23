@@ -18,7 +18,7 @@ public class FSMProtocolo extends FSMBehaviour{
 	private static final String ACUERDO = "acuerdo";
 	private static final String CONFLICTO = "conflicto";
 	public static final String ULTIMOMSJ = "ultimo-msg";
-	public static final String CONVID = "conversation-id";
+	public static final String MSJ_ENVIADO = "mensaje-enviado";
 	// INICIATOR
 	public FSMProtocolo(AID aid) {
 		DataStore ds = new DataStore();
@@ -31,7 +31,7 @@ public class FSMProtocolo extends FSMBehaviour{
 	// RESPONDER
 	public FSMProtocolo(ACLMessage proposeInicial) {
 		DataStore ds = new DataStore();
-		ds.put(PROPOSE_INITIAL, proposeInicial);
+		ds.put(ULTIMOMSJ, proposeInicial);
 
 		this.crearFSM(ds, false);
 

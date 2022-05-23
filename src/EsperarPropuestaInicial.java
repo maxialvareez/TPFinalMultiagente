@@ -14,6 +14,7 @@ public class EsperarPropuestaInicial extends CyclicBehaviour {
 						MessageTemplate.MatchPerformative(ACLMessage.PROPOSE),MessageTemplate.MatchInReplyTo("")));      //chequear si va con comillas vacías o null
 
 		if (prop_ini != null) {
+			System.out.println("Se inicia la maquina de estados del resp");
 			myAgent.addBehaviour(new FSMProtocolo(prop_ini));
 		}
 		else

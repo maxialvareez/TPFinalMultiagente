@@ -30,6 +30,7 @@ public class AgentInitiator extends AgentNegociador {
         template.addServices(sd);
         try {
             DFAgentDescription[] result = DFService.search(this, template);
+
             if (result.length > 0)
                 addBehaviour(new FSMProtocolo(result[0].getName()));
             else {

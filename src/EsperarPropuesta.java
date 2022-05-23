@@ -15,7 +15,7 @@ public class EsperarPropuesta extends Behaviour {
 		if (msj_propose != null){
 			termino = true;
 			//Todo fijarse si usar ULTIMOMSJ o PROPOSE_INITIAL
-			getDataStore().put(FSMProtocolo.PROPOSE_INITIAL, msj_propose);
+			getDataStore().put(FSMProtocolo.ULTIMOMSJ, msj_propose);
 		}
 		else{
 			block();
