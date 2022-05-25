@@ -10,7 +10,6 @@ public class Conflicto extends Behaviour {
 
 	@Override
 	public boolean done() {
-
 		return true;
 	}
 

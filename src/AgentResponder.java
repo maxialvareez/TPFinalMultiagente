@@ -11,7 +11,7 @@ public class AgentResponder extends AgentNegociador{
 
         agregarPuntaje(new Puntaje("Milanesas", 2));
         agregarPuntaje(new Puntaje("Papas",3));
-        agregarPuntaje(new Puntaje("Pasta", 3.5));
+        agregarPuntaje(new Puntaje("Pasta",3.5f));
         agregarPuntaje(new Puntaje("Asado", 1));
         agregarPuntaje(new Puntaje("Arroz", 5));
         ordenarPuntajes();

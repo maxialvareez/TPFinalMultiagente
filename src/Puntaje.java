@@ -1,11 +1,11 @@
 public class Puntaje implements Comparable<Puntaje>{
 
     private String comida;
-    private double puntaje;
+    private float puntaje;
     private boolean activo;
 
 
-    public Puntaje(String comida, double puntaje) {
+    public Puntaje(String comida, float puntaje) {
         this.comida = comida;
         this.puntaje = puntaje;
         this.activo = true;
@@ -21,11 +21,11 @@ public class Puntaje implements Comparable<Puntaje>{
         return this;
     }
 
-    public double getPuntaje() {
+    public float getPuntaje() {
         return puntaje;
     }
 
-    public Puntaje setPuntaje(double puntaje) {
+    public Puntaje setPuntaje(float puntaje) {
         this.puntaje = puntaje;
         return this;
     }
@@ -41,6 +41,6 @@ public class Puntaje implements Comparable<Puntaje>{
 
     @Override
     public int compareTo(Puntaje p) {
-        return Double.compare(this.puntaje,p.getPuntaje());
+        return Float.compare(this.puntaje,p.getPuntaje());
     }
 }

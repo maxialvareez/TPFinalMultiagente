@@ -15,13 +15,13 @@ public class RecibirZeuthen extends Behaviour {
 		ACLMessage comida = (ACLMessage) getDataStore().get(FSMProtocolo.ULTIMOMSJ);
 		String comida_propuesta = comida.getContent();
 
-		double uPropRecibida = ((AgentNegociador)myAgent).getPuntaje(comida_propuesta);
+		float uPropRecibida = ((AgentNegociador)myAgent).getPuntaje(comida_propuesta);
 
 
 		if (recibido != null) {
 			termino = true;
-			double miZeuthen = ((AgentNegociador) myAgent).calcularZeuthen(uPropRecibida);
-			double otroZeuthen = Double.parseDouble(recibido.getContent());
+			float miZeuthen = ((AgentNegociador) myAgent).calcularZeuthen(uPropRecibida);
+			float otroZeuthen = Float.parseFloat(recibido.getContent());
 
 			System.out.println(myAgent.getName()+  ", Prop Propia: " + ((AgentNegociador) myAgent).getPropuestaActual() + "---------> Puntaje:"+((AgentNegociador) myAgent).getPuntajePropuestaActual()+ ",  Prop Recibida: " + comida_propuesta + "---------> Puntaje: " + uPropRecibida+ ", MiZeuthen: "+ miZeuthen+ ", OtroZeuthen" + otroZeuthen);
 

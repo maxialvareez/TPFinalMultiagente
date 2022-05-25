@@ -16,7 +16,7 @@ public class AgentInitiator extends AgentNegociador {
         super.setup();
 
         agregarPuntaje(new Puntaje("Milanesas", 5));
-        agregarPuntaje(new Puntaje("Papas",4.5));
+        agregarPuntaje(new Puntaje("Papas",4.5f));
         agregarPuntaje(new Puntaje("Pasta", 4));
         agregarPuntaje(new Puntaje("Asado", 2));
         agregarPuntaje(new Puntaje("Arroz", 1));

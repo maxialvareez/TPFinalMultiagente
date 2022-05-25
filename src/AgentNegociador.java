@@ -1,3 +1,7 @@
+import Ontology.*;
+import jade.content.lang.Codec;
+import jade.content.lang.sl.SLCodec;
+import jade.content.onto.Ontology;
 import jade.core.Agent;
 
 
@@ -9,12 +13,17 @@ import java.util.List;
 
 public class AgentNegociador extends Agent {
 
+    private Codec codec = new SLCodec();
+    private Ontology ontology = MCPOntology.getInstance();
+
     private List<Puntaje> puntajes;
     private int pActual = 0;
 
 
     protected void setup() {
 
+        getContentManager().registerLanguage(this.codec);
+        getContentManager().registerOntology(this.ontology);
         this.puntajes = new ArrayList<>();
 
     }
@@ -41,11 +50,11 @@ public class AgentNegociador extends Agent {
         return this.puntajes.get(this.pActual).getComida();
     }
 
-    public double getPuntajePropuestaActual(){
+    public float getPuntajePropuestaActual(){
         return this.puntajes.get(this.pActual).getPuntaje();
     }
 
-    public double getPuntaje(String comida){
+    public float getPuntaje(String comida){
         for (Puntaje p : this.puntajes){
             if(p.getComida().equals(comida))
                 return p.getPuntaje();
@@ -53,7 +62,7 @@ public class AgentNegociador extends Agent {
         return 0;
     }
 
-    public double getPeorPuntaje(){
+    public float getPeorPuntaje(){
         if (puntajes.size() > 0)
             return (puntajes.get(puntajes.size()-1).getPuntaje());
 
@@ -72,7 +81,7 @@ public class AgentNegociador extends Agent {
         return false;
     }
 
-    public double calcularZeuthen(double uPropuestaRecibida){
+    public float calcularZeuthen(float uPropuestaRecibida){
         if (this.getPuntajePropuestaActual() == 0)
             return 1;
         else{
@@ -80,5 +89,11 @@ public class AgentNegociador extends Agent {
         }
     }
 
+    public Codec getCodec() {
+        return codec;
+    }
 
+    public Ontology getOntology() {
+        return ontology;
+    }
 }

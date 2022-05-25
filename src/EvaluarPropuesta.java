@@ -10,8 +10,8 @@ import jade.lang.acl.ACLMessage;
 			ACLMessage respuesta = mensaje.createReply();
 
 			//Comparacion entre la utilizad de la propuesta propia y la recibida. Si U(PropPropia) <= U(PropuestaRecibida) entonces acepta
-			double uMiPropuesta = ((AgentNegociador)myAgent).getPuntajePropuestaActual();
-			double uOtraPropuesta = ((AgentNegociador)myAgent).getPuntaje(mensaje.getContent());
+			float uMiPropuesta = ((AgentNegociador)myAgent).getPuntajePropuestaActual();
+			float uOtraPropuesta = ((AgentNegociador)myAgent).getPuntaje(mensaje.getContent());
 
 
 			if (uMiPropuesta <= uOtraPropuesta){
