@@ -4,7 +4,7 @@ public class Acuerdo extends Behaviour {
 
 	@Override
 	public void action() {
-		System.out.println("Acuerdo");
+		System.out.println("Acuerdo --------" +this.myAgent.getName() );
 	}
 
 	@Override

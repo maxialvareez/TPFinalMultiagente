@@ -1,12 +1,8 @@
 import jade.core.Agent;
-import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.domain.FIPAException;
 
-import java.security.IdentityScope;
+
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -66,14 +62,14 @@ public class AgentNegociador extends Agent {
 
 
     public void cederComida(){
-        this.puntajes.remove(0);
+        this.pActual ++;
     }
 
     public boolean existeComida(){
-        if (puntajes.isEmpty())
-            return false;
-
-        return true;
+        if (this.pActual <= puntajes.size()){
+            return true;
+        }
+        return false;
     }
 
     public double calcularZeuthen(double uPropuestaRecibida){

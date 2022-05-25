@@ -23,10 +23,10 @@ public class RecibirZeuthen extends Behaviour {
 			double miZeuthen = ((AgentNegociador) myAgent).calcularZeuthen(uPropRecibida);
 			double otroZeuthen = Double.parseDouble(recibido.getContent());
 
-			System.out.println(myAgent.getName()+ ", Prop Recibida: " + comida_propuesta + "---------> Puntaje: " + uPropRecibida+ ", MiZeuthen: "+ miZeuthen+ ", OtroZeuthen" + otroZeuthen);
+			System.out.println(myAgent.getName()+  ", Prop Propia: " + ((AgentNegociador) myAgent).getPropuestaActual() + "---------> Puntaje:"+((AgentNegociador) myAgent).getPuntajePropuestaActual()+ ",  Prop Recibida: " + comida_propuesta + "---------> Puntaje: " + uPropRecibida+ ", MiZeuthen: "+ miZeuthen+ ", OtroZeuthen" + otroZeuthen);
 
 			//TODO que hacer para el caso de que sean iguales? Porque asi ambos concederian, o ambos no concederian
-			if (miZeuthen < otroZeuthen) {
+			if (miZeuthen <= otroZeuthen) {
 				((AgentNegociador)myAgent).cederComida();
 				event = 1;
 				System.out.println("Va a proponer " + myAgent.getName());

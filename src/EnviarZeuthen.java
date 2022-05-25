@@ -23,7 +23,7 @@ public class EnviarZeuthen extends Behaviour {
 		ACLMessage respuesta = mensaje.createReply();
 		respuesta.setPerformative(ACLMessage.INFORM);
 
-
+		System.out.println("---ENVIAR ZEUTHEN---"+ myAgent.getName()+  ", Prop Recibida: " + comida_propuesta);
 		//Todo No se puede enviar un double, con la ontologia creo que se permitiria, pero fijarse como hacerlo ahora.
 		respuesta.setContent(Double.toString(miZeuthen));
 

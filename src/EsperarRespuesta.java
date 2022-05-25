@@ -22,17 +22,18 @@ public class EsperarRespuesta extends Behaviour {
 
 		System.out.println("En estado esperar respuesta");
 		if (msj_actual != null) {
-			getDataStore().put(FSMProtocolo.ULTIMOMSJ,msj_actual);
+			this.getDataStore().put(FSMProtocolo.ULTIMOMSJ,msj_actual);
 
 			if (msj_actual.getPerformative() == ACLMessage.REJECT_PROPOSAL){
-				event = 0;
+				this.event = 0;
 			}
 			else {
 				if (msj_actual.getPerformative() == ACLMessage.ACCEPT_PROPOSAL) {
-					event = 1;
+					System.out.println(this.myAgent.getName() + "  Accede al acuerdo");
+					this.event = 1;
 				}
 			}
-			termino = true;
+			this.termino = true;
 		}
 		else{
 			block();
@@ -41,16 +42,18 @@ public class EsperarRespuesta extends Behaviour {
 
 	@Override
 	public boolean done() {
-		return termino;
+		return this.termino;
 	}
 
 	@Override
 	public int onEnd() {
 		return this.event;
 	}
+
 	@Override
 	public void reset() {
-		termino = false;
-		event = -1;
+		this.termino = false;
+		this.event = -1;
 	}
-	}
+
+}

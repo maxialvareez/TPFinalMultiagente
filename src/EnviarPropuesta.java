@@ -44,6 +44,15 @@ import java.util.List;
 					this.myAgent.send(respuesta);
 				}
 			} else {
+				mensaje = (ACLMessage) getDataStore().get(FSMProtocolo.ULTIMOMSJ);
+				ACLMessage respuesta = mensaje.createReply();
+				respuesta.setPerformative(ACLMessage.CANCEL);
+
+				this.getDataStore().put(FSMProtocolo.MSJ_ENVIADO, respuesta);
+
+
+				this.myAgent.send(respuesta);
+
 				this.event = 1;
 			}
 		}
